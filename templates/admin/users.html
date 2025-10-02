@@ -1,0 +1,65 @@
+{% extends "admin/admin_base.html" %}
+{% block admin_body %}
+<a
+  href="/register"
+  class="w-full flex items-center justify-center bg-gray-800 hover:bg-gray-700 py-3 font-bold text-gray-200"
+  >Add New User</a
+>
+        <!-- Main Dashboard Content -->
+        <main class="p-6 w-full flex justify-center h-full gap-x-3">
+            {% for usr in users|reverse %}
+            <div class="flex gap-x-3">
+                <div class="bg-white overflow-hidden shadow rounded-lg border">
+                    <div class="px-4 py-5 sm:px-6 bg-gray-900 text-white">
+                        <h3 class="text-lg leading-6 font-medium">
+                            User Profile
+                        </h3>
+                        <p class="mt-1 max-w-2xl text-sm">
+                            This is some information about the user.
+                        </p>
+                    </div>
+                    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                        <dl class="sm:divide-y sm:divide-gray-200">
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Full name
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{usr.name}}
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Username
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{usr.username}}
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Role
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{usr.role}}
+                                </dd>
+                            </div>
+                            {% if usr.role == "user" %}
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 bg-gray-900">
+                                <dt class="text-sm font-medium text-white">
+                                    Actions
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    <a href="/user/{{usr._id}}" class="text-blue-500">View Activity</a>
+                                </dd>
+                            </div>
+                            {% endif %}
+                        </dl>
+                    </div>
+                </div>                
+            </div>
+
+            {% endfor %}
+        </main>
+    </div>
+{% endblock %}

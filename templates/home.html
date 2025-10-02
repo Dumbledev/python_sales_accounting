@@ -1,0 +1,86 @@
+{% extends "user_base.html" %} {% block user_body %}
+<a
+  href="/new_sale_handler"
+  class="w-full flex items-center justify-center bg-blue-800 hover:bg-blue-700 py-3 font-bold text-gray-200"
+  >New Sale</a
+>
+
+<!-- Main Dashboard Content -->
+<div class="shadow-lg rounded-lg overflow-hidden md:mx-10 mt-10">
+  <table class="w-full table-fixed">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          ID
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Total
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Amount Paid
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Payment Method
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Credit
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Creditor
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Checkout
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Time
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Date
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      {% for sale in d_sales|reverse %}
+      <tr>
+        <td class="py-4 px-6 border-b border-gray-200">
+          <a href="/sale/{{sale._id}}">{{sale._id|truncate(6)}}</a>
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 truncate">
+          ₦{{sale.total}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-green-400">
+          ₦{{sale.amount_paid}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200">
+          {{sale.checkout_method}}
+        </td>
+        <td class="py-4 px-6 bordaer-b border-gray-200 text-red-400">
+          ₦{{sale.total - sale.amount_paid }}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200">
+          {{sale.creditor_name}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200">{{sale.checkout}}</td>
+        <td class="py-4 px-6 border-b border-gray-200">{{sale.time}}</td>
+        <td class="py-4 px-6 border-b border-gray-200">{{sale.date}}</td>
+        <td class="py-4 px-6 border-b border-gray-200 flex gap-2">
+          <a
+            href="/update_sale/{{sale._id}}"
+            class="bg-green-500 hover:bg-green-400 text-white py-1 px-2 rounded-full text-xs"
+            >Update</a
+          >
+          <a
+            href="/delete_sale/{{sale._id}}"
+            class="bg-red-500 hover:bg-red-400 text-white py-1 px-2 rounded-full text-xs"
+            >Delete</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

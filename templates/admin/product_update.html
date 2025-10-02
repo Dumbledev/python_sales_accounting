@@ -1,0 +1,80 @@
+{% extends "admin/admin_base.html" %}
+{% block admin_body %}
+
+        <!-- <a href="/add_product" class="w-full flex items-center justify-center bg-gray-800 hover:bg-gray-700 py-3 font-bold text-gray-200">Add Product</a> -->
+
+        <!-- Main Dashboard Content -->
+        <div class="w-full max-w-lg mx-auto p-8">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-lg font-medium mb-6 flex items-center  justify-center">Update {{product.name}}</h2>
+                <form action="/product_update_handler" method="post">
+                    <input type="text" hidden value="{{product._id}}" name="id">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="col-span-2">
+                            <label for="card-number" class="block text-sm font-medium text-gray-700 mb-2">Product Name</label>
+                            <input type="text" name="name" value="{{product.name}}" id="card-number" placeholder="Product Name" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="col-span-1">
+                            <label for="buying_price" class="block text-sm font-medium text-gray-700 mb-2">Buying Price(pcs)</label>
+                            <input type="number" value={{product.buying_price_pcs}} name="buying_price_pcs" id="buying_price" placeholder="Buying Price (pcs)" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="col-span-1">
+                            <label for="selling_price" class="block text-sm font-medium text-gray-700 mb-2">Selling Price(Pcs)</label>
+                            <input type="number" value={{product.selling_price_pcs}} name="selling_price_pcs" id="selling_price" placeholder="Selling Price (pcs)" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="col-span-1">
+                            <label for="buying_price" class="block text-sm font-medium text-gray-700 mb-2">Buying Price(pkt)</label>
+                            <input type="number" value={{product.buying_price_pkt}} name="buying_price_pkt" id="buying_price" placeholder="Buying Price (pcs)" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="col-span-1">
+                            <label for="selling_price" class="block text-sm font-medium text-gray-700 mb-2">Selling Price(Pkt)</label>
+                            <input type="number" value={{product.selling_price_pkt}} name="selling_price_pkt" id="selling_price" placeholder="Selling Price (pcs)" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>   
+                        <div class="col-span-1">
+                            <label for="buying_price" class="block text-sm font-medium text-gray-700 mb-2">Buying Price(Carton)</label>
+                            <input type="number" value={{product.buying_price_carton}} name="buying_price_carton" id="buying_price" placeholder="Buying Price (pcs)" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="col-span-1">
+                            <label for="selling_price" class="block text-sm font-medium text-gray-700 mb-2">Selling Price(Carton)</label>
+                            <input type="number" value={{product.selling_price_carton}} name="selling_price_carton" id="selling_price" placeholder="Selling Price (pcs)" class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500">
+                        </div>                           
+                        <!-- <div>
+                            <div class="col-span-2">
+                                <label for=""class="w-full">Selling Categories</label>
+                                <div class="flex gap-x-2">
+                                    <div class="flex items-center">
+                                        <label class="flex items-center space-x-3 cursor-pointer">
+                                            <input name="sell_category" value="sack" type="checkbox" class="form-checkbox h-6 w-6 text-blue-600 rounded focus:ring-blue-500">
+                                            <span class="text-gray-800 text-xl">Sack</span>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <label class="flex items-center space-x-3 cursor-pointer">
+                                            <input name="sell_category" type="checkbox" value="carton" class="form-checkbox h-6 w-6 text-blue-600 rounded focus:ring-blue-500">
+                                            <span class="text-gray-800 text-xl">Carton</span>
+                                        </label>
+                                    </div> 
+                                    <div class="flex items-center">
+                                        <label class="flex items-center space-x-3 cursor-pointer">
+                                            <input type="checkbox" name="sell_category" value="packet" class="form-checkbox h-6 w-6 text-blue-600 rounded focus:ring-blue-500">
+                                            <span class="text-gray-800 text-xl">Packet</span>
+                                        </label>
+                                    </div>  
+                                    <div class="flex items-center">
+                                        <label class="flex items-center space-x-3 cursor-pointer">
+                                            <input type="checkbox" value="pcs" class="form-checkbox h-6 w-6 text-blue-600 rounded focus:ring-blue-500">
+                                            <span class="text-gray-800 text-xl">Pcs</span>
+                                        </label>                                                                                                
+                                </div>
+                            
+                            </div>
+                        </div>                   
+                    </div> -->
+                    <div class="mt-4 flex items-center justify-center gap-x-5">
+                        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none">Submit</button>
+                        <a href="/delete_product/{{product._id}}" type="submit" class="w-full flex items-center justify-center bg-red-500 hover:bg-red-600 text-white font-medium py-3 rounded-lg focus:outline-none">Delete</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,293 @@
+{% extends "user_base.html" %} {% block user_body %}
+<div
+  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-8 px-5 pt-8"
+>
+  <!-- Revenue Card -->
+  <div
+    class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+  >
+    <div class="flex items-center justify-between">
+      <div>
+        <a class="text-sm font-medium text-blue-600 hover:underline">Sales</a>
+        <p class="text-3xl font-bold text-gray-900 mt-2">
+          {{user_sales|length}}
+        </p>
+        <div class="flex items-center mt-2">
+          <!-- <span class="text-green-600 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    12%
+                                </span> -->
+          <span class="text-gray-500 text-sm">Sales Today</span>
+        </div>
+      </div>
+      <!-- <div class="w-12 h-12 bg-cordes-blue bg-opacity-10 rounded-lg flex items-center justify-center">
+                            <i class="text-cordes-blue text-xl">₦</i>
+                        </div> -->
+    </div>
+  </div>
+
+  <!-- Users Card -->
+  <div
+    class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+  >
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm font-medium text-gray-600">Daily Sales</p>
+        <p class="text-3xl font-bold text-gray-900 mt-2">₦{{u_total_sales}}</p>
+        <div class="flex items-center mt-2">
+          <span class="text-gray-500 text-sm ml-2">Daily</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders Card -->
+  <div
+    class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+  >
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm font-medium text-gray-600">Credit Today</p>
+        <p class="text-3xl font-bold text-gray-900 mt-2">
+          {{user_credits|length}}
+        </p>
+        <div class="flex items-center mt-2">
+          <!-- <span class="text-green-600 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    15%
+                                </span> -->
+          <span class="text-gray-500 text-sm ml-2">current month</span>
+        </div>
+      </div>
+      <div
+        class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center"
+      >
+        <i class="fas fa-shopping-cart text-orange-600 text-xl"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Card -->
+  <div
+    class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+  >
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm font-medium text-red-600">Total Credit Amount</p>
+        <p class="text-3xl font-bold text-red-900 mt-2">₦{{u_total_credits}}</p>
+        <div class="flex items-center mt-2">
+          <!-- <span class="text-green-600 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    5%
+                                </span> -->
+          <span class="text-gray-500 text-sm ml-2">Today</span>
+        </div>
+      </div>
+      <!-- <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="text-cordes-blue text-xl">₦</i>
+                        </div> -->
+    </div>
+  </div>
+
+  <!-- Products Card -->
+
+  <div
+    class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+  >
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm font-medium text-gray-600">Total Expected</p>
+        <p class="text-3xl font-bold text-teal-500 mt-2">
+          ₦{{u_total_sales - u_total_credits}}
+        </p>
+        <div class="flex items-center mt-2">
+          <!-- <span class="text-green-600 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    5%
+                                </span> -->
+          <!-- <span class="text-gray-500 text-sm ml-2">current month</span> -->
+        </div>
+      </div>
+      <!-- <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="text-cordes-blue text-xl">₦</i>
+                        </div> -->
+    </div>
+  </div>
+
+  <div
+    class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+  >
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm font-medium text-gray-600">Monthly Sales</p>
+        <a href="/user_m_sales" class="text-xl font-bold text-blue-900 mt-2">
+          View
+        </a>
+        <div class="flex items-center mt-2">
+          <span class="text-gray-500 text-sm ml-2">current month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Main Dashboard Content -->
+<p
+  class="text-teal-600 font-bold text-lg flex items-center justify-center mt-10"
+>
+  Sales
+</p>
+
+<div class="shadow-lg rounded-lg overflow-hidden md:mx-10 mt-10">
+  <table class="w-full table-fixed">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          ID
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Total
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Amount Paid
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Payment Method
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Credit
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Creditor
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Checkout
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Time
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Date
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      {% for sale in user_sales|reverse %}
+      <tr>
+        <td class="py-4 px-6 border-b border-gray-200">
+          <a href="/sale/{{sale._id}}">{{sale._id|truncate(6)}}</a>
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 truncate">
+          ₦{{sale.total}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-green-400">
+          ₦{{sale.amount_paid}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200">
+          {{sale.checkout_method}}
+        </td>
+        <td class="py-4 px-6 bordaer-b border-gray-200 text-red-400">
+          ₦{{sale.total - sale.amount_paid }}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200">
+          {{sale.creditor_name}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200">{{sale.checkout}}</td>
+        <td class="py-4 px-6 border-b border-gray-200">{{sale.time}}</td>
+        <td class="py-4 px-6 border-b border-gray-200">{{sale.date}}</td>
+        <td class="py-4 px-6 border-b border-gray-200 flex gap-2">
+          <a
+            href="/update_sale/{{sale._id}}"
+            class="bg-green-500 hover:bg-green-400 text-white py-1 px-2 rounded-full text-xs"
+            >Update</a
+          >
+          <a
+            href="/delete_sale/{{sale._id}}"
+            class="bg-red-500 hover:bg-red-400 text-white py-1 px-2 rounded-full text-xs"
+            >Delete</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<p
+  class="text-red-600 font-bold text-lg flex items-center justify-center mt-10"
+>
+  Credits
+</p>
+
+<div class="shadow-lg rounded-lg overflow-hidden md:mx-10 mt-4">
+  <table class="w-full table-fixed">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Name
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Amount
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Resolved
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Date
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Time
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Update
+        </th>
+        <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">
+          Resolve
+        </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      {% for credit in user_credits|reverse %}
+      <tr>
+        <td class="py-4 px-6 border-b border-gray-200 text-blue-600">
+          <a href="/credit/{{credit._id}}">{{credit.creditor_name}}</a>
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 truncate text-red-600">
+          ₦{{credit.credit_amount}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 truncate">
+          {{credit.resolved}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200">{{credit.date}}</td>
+        <td class="py-4 px-6 border-b border-gray-200">{{credit.time}}</td>
+        <td class="py-4 px-6 border-b border-gray-200 flex gap-2">
+          {% if credit.resolved != True %}
+          <a
+            href="/credit/{{credit._id}}"
+            class="bg-green-500 hover:bg-green-400 text-white py-1 px-2 rounded-full text-xs"
+            >Update Credit</a
+          >
+          {% else %}
+          <a
+            href="/delete_credit/{{credit._id}}"
+            class="bg-red-500 hover:bg-red-400 text-white py-1 px-2 rounded-full text-xs"
+            >Delete</a
+          >
+          {% endif %}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200">
+          <a
+            href="/resolve_credit/{{credit._id}}"
+            class="bg-green-500 hover:bg-green-400 text-white py-1 px-2 rounded-full text-xs"
+            >Resolve Credit</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

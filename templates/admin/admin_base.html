@@ -1,0 +1,137 @@
+{% extends "base.html" %} {% block body %}
+<body class="bg-gray-100 min-h-screen">
+  <!-- Sidebar -->
+  <div class="fixed inset-y-0 left-0 w-52 bg-gray-800 shadow-xl z-50">
+    <div class="flex items-center justify-center h-16 bg-cordes-blue">
+      <div class="flex items-center space-x-3">
+        <div
+          class="w-8 h-8 bg-white rounded-lg flex items-center justify-center"
+        >
+          <i class="fas fa-cube text-cordes-blue text-lg"></i>
+        </div>
+        <span class="text-white text-xl font-bold">A.Rahim</span>
+      </div>
+    </div>
+
+    <nav class="mt-8">
+      <div class="space-y-2">
+        <a
+          href="/admin"
+          class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors group"
+        >
+          <i
+            class="fas fa-home mr-3 text-cordes-accent group-hover:text-white"
+          ></i>
+          Dashboard
+        </a>
+        <a
+          href="/products"
+          class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors group"
+        >
+          <i
+            class="fas fa-chart-bar mr-3 text-gray-400 group-hover:text-white"
+          ></i>
+          Inventory
+        </a>
+        <a
+          href="/users"
+          class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors group"
+        >
+          <i class="fas fa-users mr-3 text-gray-400 group-hover:text-white"></i>
+          Users
+        </a>
+
+        <a
+          href="/product_entries"
+          class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors group"
+        >
+          <i class="fas fa-box mr-3 text-gray-400 group-hover:text-white"></i>
+          Product Entries
+        </a>
+        <a
+          href="/sales"
+          class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors group"
+        >
+          <i
+            class="fas fa-shopping-cart mr-3 text-gray-400 group-hover:text-white"
+          ></i>
+          Sales
+        </a>
+
+        <a
+          href="/logout"
+          class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors group"
+        >
+          <i class="fas fa-cog mr-3 text-gray-400 group-hover:text-white"></i>
+          Logout
+        </a>
+      </div>
+    </nav>
+
+    <div class="absolute bottom-4 left-4 right-4">
+      <div class="bg-gray-800 rounded-lg p-4">
+        <div class="flex items-center space-x-3">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/17003/17003310.png"
+            alt="Admin"
+            class="w-10 h-10 rounded-full"
+          />
+          <div>
+            <p class="text-white text-sm font-medium">{{user.name}}</p>
+            <p class="text-gray-400 text-xs">{{user.role}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="ml-48">
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <div class="px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-semibold text-gray-900">
+              Dashboard Overview
+            </h1>
+            <p class="text-gray-600 text-sm mt-1">
+              Welcome back, here's what's happening today
+            </p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <i
+                class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+              ></i>
+              <input
+                type="text"
+                placeholder="Search..."
+                class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cordes-accent focus:border-transparent outline-none"
+              />
+            </div>
+            <div class="relative">
+              <!-- <button class="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+                            </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    {% block admin_body %}{% endblock %}
+  </div>
+  {% endblock %}
+  <script>
+    $( function() {
+      var availableTags = [
+          {% for product in products %}
+              "{{product.name}}",
+          {% endfor %}
+      ];
+      $( "#tags" ).autocomplete({
+        source: availableTags
+      });
+    } );
+  </script>
+</body>

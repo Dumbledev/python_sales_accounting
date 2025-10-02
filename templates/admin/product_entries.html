@@ -1,0 +1,136 @@
+{% extends "admin/admin_base.html" %} {% block admin_body %}
+<form
+  action="/add_product_entry_handler"
+  class="flex flex-col items-center justify-center my-3"
+  autocomplete="off"
+  method="post"
+>
+  <div class="flex items-center justify-center gap-x-7">
+    <input
+      type="text"
+      name="name"
+      id="tags"
+      placeholder="Product Name"
+      class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
+    />
+    <input
+      type="number"
+      name="quantity"
+      id="expiration-date"
+      placeholder="Quantity"
+      value="0"
+      class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
+    />
+  </div>
+  <div class="mt-4 flex items-center justify-center w-full">
+    <button
+      type="submit"
+      class="w-full mx-16 bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+
+<!-- <a
+  href="/add_product_entry"
+  class="w-full flex items-center justify-center bg-gray-800 hover:bg-gray-700 py-3 font-bold text-gray-200"
+  >Add Product Entry</a
+> -->
+
+<!-- Main Dashboard Content -->
+<div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10 mt-10">
+  <table class="w-full table-fixed">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Name
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Selling Price(Pcs)
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Quantity
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Profit Est (Pcs)
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Time
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Date
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          User
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      {% for entry in entries|reverse %}
+      <tr>
+        <td class="py-4 px-6 border-b border-gray-200">
+          <a
+            href="/entry_update/{{entry._id}}"
+            class="text-blue-600 hover:underline"
+            >{{entry.name|truncate(6)}}</a
+          >
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-amber-600">
+          {{entry.product.selling_price_pcs}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-amber-600">
+          {{entry.quantity}}
+        </td>
+
+        <td class="py-4 px-6 border-b border-gray-200 text-amber-600">
+          {{entry.est_pcs_profit}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-amber-600">
+          {{entry.time}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-teal-600">
+          {{entry.date}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-teal-600">
+          {{(entry.user['name'])}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200">
+          <a
+            href="/entry_update/{{entry._id}}"
+            class="bg-green-500 hover:bg-green-400 text-white py-1 px-2 rounded-full text-xs"
+            >Update</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td class="py-4 px-6 border-b border-gray-200"></td>
+        <td class="py-4 px-6 border-b border-gray-200 text-amber-600"></td>
+        <td class="py-4 px-6 border-b border-gray-200 text-amber-600"></td>
+        <td class="py-4 px-6 border-b border-gray-200 text-teal-600 font-bold">
+          {{total}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-teal-600"></td>
+        <td class="py-4 px-6 border-b border-gray-200 text-teal-600"></td>
+        <td class="py-4 px-6 border-b border-gray-200"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<script>
+  $( function() {
+    var availableTags = [
+        {% for product in products %}
+            "{{product.name}}",
+        {% endfor %}
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+</script>
+{% endblock %}

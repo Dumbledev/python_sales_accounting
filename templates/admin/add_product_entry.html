@@ -1,0 +1,63 @@
+{% extends "admin/admin_base.html" %} {% block admin_body %}
+<div class="w-full max-w-lg mx-auto p-8">
+  <div class="bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-lg font-medium mb-6 flex items-center justify-center">
+      Add Product
+    </h2>
+    <form
+      action="/add_product_entry_handler"
+      class="flex items-center"
+      autocomplete="off"
+      method="post"
+    >
+      <div class="grid grid-cols-2 gap-6">
+        <div class="col-span-2">
+          <label
+            for="card-number"
+            class="block text-sm font-medium text-gray-700 mb-2"
+            >Product Name</label
+          >
+          <input
+            type="text"
+            name="name"
+            id="tags"
+            placeholder="Product Name"
+            class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div class="col-span-1">
+          <label
+            for="expiration-date"
+            class="block text-sm font-medium text-gray-700 mb-2"
+            >Quantity</label
+          >
+          <input
+            type="number"
+            name="quantity"
+            id="expiration-date"
+            placeholder="Quantity"
+            class="w-full py-3 px-4 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <!-- <div class="col-span-1">
+                            <label for="quantity_label" class="block text-sm font-medium text-gray-700 mb-2">Quantity Label</label>
+                        <select name="quantity_label" id="quantity_label">
+                        <option value="Pcs">Pcs</option>
+                        <option value="Carton">Carton</option>
+                        <option value="Sack">Sack</option>
+                        </select> 
+                    </div>                         -->
+
+        <div class="mt-4 flex items-center justify-center w-full">
+          <button
+            type="submit"
+            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg focus:outline-none"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

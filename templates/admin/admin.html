@@ -1,0 +1,373 @@
+{% extends "admin/admin_base.html" %}
+{% block admin_body %}
+        <!-- Main Dashboard Content -->
+        <main class="p-6">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Revenue Card -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <a href="/products" class="text-sm font-medium text-blue-600 hover:underline">Products</a>
+                            <p class="text-3xl font-bold text-gray-900 mt-2">{{all_products|length}}</p>
+                            <div class="flex items-center mt-2">
+                                <!-- <span class="text-green-600 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    12%
+                                </span> -->
+                                <span class="text-gray-500 text-sm">All Products</span>
+                            </div>
+                        </div>
+                        <!-- <div class="w-12 h-12 bg-cordes-blue bg-opacity-10 rounded-lg flex items-center justify-center">
+                            <i class="text-cordes-blue text-xl">₦</i>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Users Card -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <a href="/product_entries" class="text-sm font-medium text-blue-600 hover:underline">Product Entries</a>
+                            <p class="text-3xl font-bold text-gray-900 mt-2">{{m_product_entries|length}}</p>
+                            <div class="flex items-center mt-2">
+                                <!-- <span class="text-green-600 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    8%
+                                </span> -->
+                                <span class="text-gray-500 text-sm ml-2">current month</span>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-users text-green-600 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Card -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Sales No.</p>
+                            <p class="text-3xl font-bold text-gray-900 mt-2">{{m_sales|length}}</p>
+                            <div class="flex items-center mt-2">
+                                <!-- <span class="text-green-600 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    15%
+                                </span> -->
+                                <span class="text-gray-500 text-sm ml-2">current month</span>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-shopping-cart text-orange-600 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Card -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Total Sales</p>
+                            <p class="text-3xl font-bold text-gray-900 mt-2">₦{{m_total_sales}}</p>
+                            <div class="flex items-center mt-2">
+                                <!-- <span class="text-green-600 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    5%
+                                </span> -->
+                                <span class="text-gray-500 text-sm ml-2">current month</span>
+                            </div>
+                        </div>
+                        <!-- <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="text-cordes-blue text-xl">₦</i>
+                        </div> -->
+                    </div>
+                </div>
+
+
+                                <!-- Products Card -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Daily Sales</p>
+                            <p class="text-3xl font-bold text-gray-900 mt-2">₦{{d_total_sales}}</p>
+                            <div class="flex items-center mt-2">
+                                <span class="text-gray-500 text-sm ml-2">Daily</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Credits</p>
+                            <p class="text-3xl font-bold text-red-500 mt-2">₦{{m_total_credit}}</p>
+                            <div class="flex items-center mt-2">
+                                <!-- <span class="text-green-600 text-sm font-medium flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i>
+                                    5%
+                                </span> -->
+                                <!-- <span class="text-gray-500 text-sm ml-2">current month</span> -->
+                            </div>
+                        </div>
+                        <!-- <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="text-cordes-blue text-xl">₦</i>
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Total Profit EST</p>
+                            <p class="text-3xl font-bold text-gray-900 mt-2">₦{{m_entries_total}}</p>
+                            <div class="flex items-center mt-2">
+                                <span class="text-gray-500 text-sm ml-2">current month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                
+                <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Products</h3>
+                            <p class="text-gray-600 text-sm"></p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <!-- <button class="px-3 py-1 text-sm bg-cordes-blue text-white rounded-md">6M</button>
+                            <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-md">1Y</button> -->
+                        </div>
+                    </div>
+                    <div class="h-80">
+                          <table class="w-full table-fixed">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Name
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Buying Price(pcs)
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Selling Price(pcs)
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Buying Price(pkt)
+        </th>
+        <th class="py-4 px-6 text-left text-gray-600 font-medium uppercase">
+          Selling Price(pkt)
+        </th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      {% for product in all_products[:4]|reverse %}
+      <tr>
+        <td class="py-4 px-6 border-b border-gray-200">
+          {{product.name|truncate(4)}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-amber-600">
+          {{product.buying_price_pcs}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-amber-600">
+          {{product.selling_price_pcs}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-teal-600">
+          {{product.buying_price_pkt}}
+        </td>
+        <td class="py-4 px-6 border-b border-gray-200 text-teal-600">
+          {{(product.selling_price_pkt)}}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+                    </div>
+                </div>
+
+                <!-- Top Products -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900">Latest ProductEntries</h3>
+                        <a href="/product_entries" class="text-blue-600 hover:text-blue-400 hover:underline text-sm font-medium">View All</a href="/product_entries">
+                    </div>
+                    <div class="space-y-4">
+                        {% for m_product_entry in m_product_entries[:5]|reverse %}
+                            <div class="flex items-center space-x-4">
+                                <!-- <img src="https://i.ytimg.com/vi/08JoSCHV9VY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAC7M1K4hMJbmFQQFppnSNzsZAcRA" alt="Product" class="w-12 h-12 rounded-lg"> -->
+                                <div class="flex-1">
+                                    <p class="font-medium text-gray-900">{{m_product_entry.name}}</p>
+                                    <p class="text-sm text-gray-600">Electronics</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-semibold text-gray-900">{{m_product_entry.quantity}}</p>
+                                    <p class="text-sm text-green-600">{{m_product_entry.date}}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders Table -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 mb-8">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Recent Orders</h3>
+                            <p class="text-gray-600 text-sm">Latest customer orders and transactions</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                                Monthly Sales
+                            </button>
+                            <button class="px-4 py-2 bg-cordes-blue text-white rounded-lg hover:bg-cordes-dark transition-colors">
+                                All Sales 
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Checkout</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <!-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th> -->
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% for i in m_sales[:11]|reverse %}
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-sm font-medium text-gray-900">{{i._id|truncate(8)}}</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">{{i.creditor_name}}</div>
+                                            <div class="text-sm text-amber-500">{{i.checkout_method}}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">₦{{i.total}}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {% if i.checkout == False %}
+                                    <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
+                                        {{i.checkout}}
+                                    </span>
+                                    {% else %}
+                                    <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                        {{i.checkout}}
+                                    </span>
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{i.time}}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{i.date}}</td>
+                                <!-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex space-x-2">
+                                        <button class="text-cordes-blue hover:text-cordes-dark">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-gray-600 hover:text-gray-900">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-900">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td> -->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bottom Row -->
+            <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> -->
+                <!-- Recent Activity -->
+                <!-- <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                            <div class="flex-1">
+                                <p class="text-sm text-gray-900">New user registered</p>
+                                <p class="text-xs text-gray-500">sarah.johnson@email.com • 2 minutes ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                            <div class="flex-1">
+                                <p class="text-sm text-gray-900">Order completed</p>
+                                <p class="text-xs text-gray-500">Order #15847 - $299.99 • 5 minutes ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                            <div class="flex-1">
+                                <p class="text-sm text-gray-900">Product updated</p>
+                                <p class="text-xs text-gray-500">iPhone 15 Pro - Stock: 25 • 8 minutes ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                            <div class="flex-1">
+                                <p class="text-sm text-gray-900">Payment received</p>
+                                <p class="text-xs text-gray-500">$1,245.00 from client • 12 minutes ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- System Status -->
+                <!-- <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">System Status</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span class="text-sm text-gray-900">Server Status</span>
+                            </div>
+                            <span class="text-sm text-green-600 font-medium">Online</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span class="text-sm text-gray-900">Database</span>
+                            </div>
+                            <span class="text-sm text-green-600 font-medium">Active</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <span class="text-sm text-gray-900">API Status</span>
+                            </div>
+                            <span class="text-sm text-yellow-600 font-medium">Warning</span>
+                        </div>
+                        <div class="mt-6">
+                            <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                <span>Server Load</span>
+                                <span>68%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-cordes-blue h-2 rounded-full" style="width: 68%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            <!-- </div> -->
+        </main>
+    </div>
+{% endblock %}

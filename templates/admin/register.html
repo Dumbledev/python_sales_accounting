@@ -1,0 +1,73 @@
+{% extends "admin/admin_base.html" %} {% block admin_body %}
+<div class="flex items-center justify-center">
+  <!-- Left Section -->
+
+  <!-- Right Section -->
+  <div class="p-8 md:p-12 md:w-1/2 flex items-center justify-center">
+    <div class="w-full max-w-md bg-white rounded-3xl shadow-lg p-8">
+      <div class="mb-8">
+        <p class="text-gray-600 mb-1">
+          <!-- Welcome to <span class="text-blue-500 font-bold">LOREM</span> -->
+        </p>
+        <h1 class="text-4xl font-bold justify-center items-center flex">
+          Register New User
+        </h1>
+      </div>
+      <form action="/register" method="post">
+        <div class="space-y-6">
+          <div class="space-y-2">
+            <label for="name" class="block text-sm font-medium text-gray-700">
+              Enter your Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Name"
+              name="name"
+              class="w-full h-12 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div class="space-y-2">
+            <label for="email" class="block text-sm font-medium text-gray-700">
+              Enter your username or email address
+            </label>
+            <input
+              id="email"
+              type="text"
+              placeholder="Username or email address"
+              name="username"
+              class="w-full h-12 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700"
+            >
+              Enter your Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              name="password"
+              class="w-full h-12 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <!-- <div class="text-right">
+                <a href="/login" class="text-blue-500 text-sm">Have an Account</a>
+              </div> -->
+          </div>
+
+          <button
+            type="submit"
+            class="w-full h-12 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md transition duration-200"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
